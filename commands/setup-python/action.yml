@@ -1,0 +1,22 @@
+name: 'Set up python 3.8 and install deps/fetch cache '
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: ${{ env.pythonLocation}}/lib/python3.8/site-packages/*
+        key: v2-${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          v2-${{ runner.os }}-pip-
+          v2-${{ runner.os }}-
+    - name: Install pip dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        pip3 install --upgrade -r requirements.txt
