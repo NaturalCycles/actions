@@ -1,0 +1,20 @@
+name: 'Git notify on failure'
+inputs:
+  branch:
+    description: "Only notify in this branch. Default is * to notify in all branches"
+    default: "*"
+  channel:
+    description: "Channel to notify in"
+    required: true
+  webhook-url:
+    description: "The Webhook URL"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Slack notify failure
+      shell: bash
+      if: failure()
+      run: |
+        [[ "${{ inputs.branch }}" != "*" && "${{ inputs.branch }}" != "${GITHUB_REF##*/}"  ]] && echo "Skipping notification for this branch" && exit 0
+        curl -X POST -H "Content-Type: application/json" -d "{\"channel\": \"${{ inputs.channel }}\", \"text\": \"\`${{github.repository}}/${GITHUB_REF##*/}\` <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|failed>\" }" ${{inputs.webhook-url }}
