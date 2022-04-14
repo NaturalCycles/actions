@@ -1,0 +1,11 @@
+name: 'Git push (if needed)'
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        ahead=`git rev-list HEAD --not --remotes | wc -l | awk '{print $1}'`
+        echo ahead=$ahead
+        [ "$ahead" != "0" ] && git push --set-upstream origin ${GITHUB_REF##*/} && echo "pushed, exiting" && exit 0
+        [ "$ahead" != "0" ] && echo "Failed to push, failing job" && exit 1
+        echo "nothing to push, proceeding"
+      shell: bash
