@@ -14,7 +14,6 @@ runs:
   steps:
     - name: Slack notify failure
       shell: bash
-      if: failure()
       run: |
-        [[ "${{ inputs.branch }}" != "*" && "${{ inputs.branch }}" != "${GITHUB_REF##*/}"  ]] && echo "Skipping notification for this branch" && exit 0
+        #[[ "${{ inputs.branch }}" != "*" && "${{ inputs.branch }}" != "${GITHUB_REF##*/}"  ]] && echo "Skipping notification for this branch" && exit 0
         curl -X POST -H "Content-Type: application/json" -d "{\"channel\": \"${{ inputs.channel }}\", \"text\": \"\`${{github.repository}}/${GITHUB_REF##*/}\` <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|failed>\" }" ${{inputs.webhook-url }}
