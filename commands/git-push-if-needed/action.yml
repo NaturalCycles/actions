@@ -1,4 +1,5 @@
 name: 'Git push (if needed)'
+description: 'Note: if run on protected branch, code must be checked out with admin PAT for this push to work'
 runs:
   using: "composite"
   steps:
