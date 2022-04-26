@@ -5,8 +5,5 @@ runs:
   steps:
     - uses: actions/setup-node@v3
       with: { node-version: "16.10", cache: 'yarn' }
-      env: { NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}" } }
     - name: Yarn install deps from lockfile
       run: yarn --frozen-lockfile
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
