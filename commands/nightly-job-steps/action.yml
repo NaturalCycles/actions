@@ -6,7 +6,9 @@ runs:
     - { uses: actions/checkout@v3, with: { persist-credentials: false } }
     - { uses: NaturalCycles/actions/commands/setup-node@v1 }
     - name: build
+      shell: bash
       run: yarn build
     - name: test
+      shell: bash
       run: yarn test-ci
 
