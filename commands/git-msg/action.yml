@@ -1,0 +1,7 @@
+name: 'GIT_MSG'
+description: 'exports last commit message to env var GIT_MSG'
+runs:
+  using: "composite"
+  steps:
+    - run: export GIT_MSG=`git log -1 --pretty=%B`
+      shell: bash
