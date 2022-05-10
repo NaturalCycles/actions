@@ -3,8 +3,10 @@ description: 'exports first line of last commit message to output msg'
 outputs:
   msg:
     description: "Output of last git commit message"
+    value: ${{ steps.msg.outputs.msg }}
 runs:
   using: "composite"
   steps:
     - run: echo "::set-output name=msg::`git log -1 --pretty=%B | head -n 1`"
+      id: msg
       shell: bash
