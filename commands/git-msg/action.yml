@@ -1,7 +1,10 @@
 name: 'GIT_MSG'
-description: 'exports last commit message to env var GIT_MSG'
+description: 'exports first line of last commit message to output msg'
+outputs:
+  msg:
+    description: "Output of last git commit message"
 runs:
   using: "composite"
   steps:
-    - run: export GIT_MSG=`git log -1 --pretty=%B`
+    - run: echo "::set-output name=msg::`git log -1 --pretty=%B | head -n 1`"
       shell: bash
