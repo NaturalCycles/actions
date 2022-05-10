@@ -10,3 +10,5 @@ runs:
     - run: echo "::set-output name=msg::`git log -1 --pretty=%B | head -n 1`"
       id: msg
       shell: bash
+    - run: echo "GIT_MSG=`git log -1 --pretty=%B | head -n 1`" >> $GITHUB_ENV
+      shell: bash
