@@ -1,10 +1,5 @@
 name: 'Sets generic CI env vars'
 
-defaults:
-  run:
-    # Set to bash to ensure bash failfast (`bash --noprofile --norc -eo pipefail {0}`)
-    shell: bash
-
 runs:
   using: "composite"
   steps:
@@ -13,5 +8,7 @@ runs:
       shell: bash
     - name: Set CI_REPO
       run: echo "CI_REPO=${{ github.event.repository.name }}" >> $GITHUB_ENV # Override branch env var
+      shell: bash
     - name: Set CI_JOB
       run: echo "CI_JOB=${GITHUB_JOB}" >> $GITHUB_ENV # Override branch env var
+      shell: bash
