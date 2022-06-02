@@ -7,7 +7,7 @@ runs:
       run: echo "CI_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       shell: bash
     - name: Set CI_REPO
-      run: echo "CI_REPO=${{ github.event.repository.name }}" >> $GITHUB_ENV # Override branch env var
+      run: echo "CI_REPO=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV # Override branch env var
       shell: bash
     - name: Set CI_JOB
       run: echo "CI_JOB=${GITHUB_JOB}" >> $GITHUB_ENV # Override branch env var
