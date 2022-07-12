@@ -7,6 +7,8 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
+      env:
+        AGENT_TOOLSDIRECTORY: "/home/docker/actions-runner/_work/_tool/py-hostedtoolcache"
     - uses: actions/cache@v3
       id: cache
       with:
