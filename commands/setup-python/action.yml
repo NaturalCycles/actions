@@ -6,9 +6,10 @@ runs:
     - name: Set up Python 3.10
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
-      env:
-        AGENT_TOOLSDIRECTORY: "/home/docker/actions-runner/_work/_tool/py-hostedtoolcache"
+        python-version: '3.10.14' # 3.10.15 changed default AGENT_TOOLSDIRECTORY and broke install
+      # Roll out 3.10.15 more carefully
+#      env:
+#        AGENT_TOOLSDIRECTORY: "/home/docker/actions-runner/_work/_tool/py-hostedtoolcache"
     - uses: actions/cache@v3
       id: cache
       with:
