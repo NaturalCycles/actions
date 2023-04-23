@@ -1,14 +1,14 @@
-name: 'Set up Node.js and install deps/fetch cache'
-
+name: setup-node
+description: Set up Node.js and install deps/fetch cache
 runs:
   using: "composite"
   steps:
     - uses: actions/setup-node@v3
-      with: { node-version: '18' }
+      with: { node-version: '18', registry-url: 'https://registry.npmjs.org' }
     - uses: actions/cache@v3
       with:
         path: 'node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - name: Yarn install deps from lockfile
+    - run: yarn --frozen-lockfile
       shell: bash
-      run: yarn --frozen-lockfile
+
