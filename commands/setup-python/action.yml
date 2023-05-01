@@ -21,6 +21,7 @@ runs:
       shell: bash
     - name: Set poetry config
       run: python -m poetry config virtualenvs.create false
+      shell: bash
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: python -m poetry install
