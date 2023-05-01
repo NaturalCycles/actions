@@ -14,15 +14,15 @@ runs:
     #     path: ${{ env.pythonLocation }}
     #     key: ${{ runner.os }}-poetry-${{ env.pythonLocation }}-${{ hashFiles('poetry.lock') }}
     - name: Install poetry
-    #  if: steps.cache.outputs.cache-hit != 'true'
+    #   if: steps.cache.outputs.cache-hit != 'true'
       run: |
         pip install --upgrade pip
         pip install poetry
       shell: bash
     # - name: Set poetry config
     #   run: python -m poetry config virtualenvs.create false
-      shell: bash
+    #   shell: bash
     - name: Install dependencies
-    #  if: steps.cache.outputs.cache-hit != 'true'
+    #   if: steps.cache.outputs.cache-hit != 'true'
       run: poetry install
       shell: bash
