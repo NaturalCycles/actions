@@ -1,5 +1,9 @@
 name: setup-node
 description: Set up Node.js and install deps/fetch cache
+parameters:
+  cacheVersion:
+    type: string
+    default: "v1"
 runs:
   using: "composite"
   steps:
@@ -8,7 +12,7 @@ runs:
     - uses: actions/cache@v3
       with:
         path: 'node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-<< parameters.cacheVersion >>
     - run: yarn --frozen-lockfile
       shell: bash
 
