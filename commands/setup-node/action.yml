@@ -1,8 +1,9 @@
 name: setup-node
 description: Set up Node.js and install deps/fetch cache
-parameters:
+inputs:
   cacheVersion:
-    type: string
+    description: 'Version of the cached dependencies. Change it to create a new cache'
+    required: false
     default: "v1"
 runs:
   using: "composite"
@@ -12,7 +13,7 @@ runs:
     - uses: actions/cache@v3
       with:
         path: 'node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-<< parameters.cacheVersion >>
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-${{ inputs.cacheVersion }}
     - run: yarn --frozen-lockfile
       shell: bash
 
