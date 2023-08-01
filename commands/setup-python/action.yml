@@ -1,4 +1,5 @@
-name: 'Set up python 3.10 and install deps/fetch cache '
+name: setup-python
+description: 'Set up python 3.10 and install deps/fetch cache '
 
 runs:
   using: "composite"

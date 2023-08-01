@@ -1,4 +1,5 @@
-name: 'Upload test artifacts to github'
+name: test-reporter
+description: 'Upload test artifacts to github'
 # TODO: Make github format it nicely, this is currently just a wrapper to simplify future addition
 inputs:
   name:

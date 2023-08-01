@@ -1,5 +1,9 @@
-name: 'Git push (if needed)'
+name: git-push-if-needed
 description: 'Note: if run on protected branch, code must be checked out with admin PAT for this push to work'
+
+# Only used in `snowflake` repo
+# todo: refactor to ci-typescript bin script instead
+
 runs:
   using: "composite"
   steps:

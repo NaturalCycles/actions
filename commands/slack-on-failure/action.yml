@@ -1,4 +1,6 @@
-name: 'Git notify on failure'
+name: slack-on-failure
+description: 'Git notify on failure'
+
 inputs:
   branch:
     description: "Only notify in this branch. Default is * to notify in all branches"
@@ -9,6 +11,7 @@ inputs:
   webhook-url:
     description: "The Webhook URL"
     required: true
+
 runs:
   using: "composite"
   steps:
